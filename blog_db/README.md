@@ -1,15 +1,15 @@
-# bbog-dig-dt-quarkus-mngr-template Postgress BD to test
+## Dependencias
+* [Docker compose](https://docs.docker.com/compose/)
 
-This directory is only for local testing of this template, remove it in the final development.
+## Ejecución
 
-## Prerequisites
-Have docker compose installed
-## Commands
-To start use the command
+Para realizar la ejecución y configuración de la base de datos proporcionada se puede usar el comando:
+
 ```bash
 docker compose up -d
 ```
-When testing is complete use the following command to remove the container
+Una vez finalizadas las pruebas se puede ejecutar el siguiente comando para eliinar la base de datos y sus elementos relacionados:
+
 ```bash
-docker compose down
+docker-compose down -v --rmi all --remove-orphans
 ```
