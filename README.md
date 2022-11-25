@@ -9,7 +9,7 @@ Está compuesta por un *front-end* que consume una **API REST**, un *back-end* q
 
 ### Modelo Arquitectónico básico
 
-![Modelo de componentes](diagrams/blog_components.svg)
+![Modelo de componentes](diagrams/blog_components.jpg)
 
 postgresql
 se proporciona un docker compose 
