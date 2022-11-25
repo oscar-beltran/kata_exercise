@@ -15,7 +15,7 @@ public class UserEntity {
     @Column(name = "email")
     private String email;
     @Column(name = "password_md5_hash")
-    private String password_md5_hash;
+    private String passwordMd5Hash;
     @Column(name = "signature")
     private String signature;
     @Column(name = "registered_at")
@@ -45,12 +45,12 @@ public class UserEntity {
         this.email = email;
     }
 
-    public String getPassword_md5_hash() {
-        return password_md5_hash;
+    public String getPasswordMd5Hash() {
+        return passwordMd5Hash;
     }
 
-    public void setPassword_md5_hash(String password_md5_hash) {
-        this.password_md5_hash = password_md5_hash;
+    public void setPasswordMd5Hash(String passwordMd5Hash) {
+        this.passwordMd5Hash = passwordMd5Hash;
     }
 
     public String getSignature() {
