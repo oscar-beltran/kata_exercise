@@ -1,11 +1,34 @@
-# Read Me First
-The following was discovered as part of building this project:
+# spring-blog-example
+Implementación usando spring boot del administrador del blog.
 
-* The original package name 'com.example.spring-blog-example' is invalid and this project uses 'com.example.springblogexample' instead.
+## Dependencias
+Para la ejecución de esta implementación se requiere tener instalado y configurado:
+* Java 11
+* Apache Maven (versión sugerida 3.8.6)
+* La base de datos configurada
+* Cualquier herramienta que permita realizar peticiones HTTP, por ejemplo [cURL](https://curl.se/) o [Postman](https://www.postman.com/)
 
-# Getting Started
+## Ejecución
+Una vez se haya configurado adecuadamente el entorno de desarrollo, dirigirse al directorio **spring-blog-example** y ejecutar el comando: 
+```bash
+mvn spring-boot:run
+```
+Y realizar algún consumo a los servicios expuestos, por ejemplo:
+```bash
+curl http://127.0.0.1:8765/blog/health -i
+```
+Obteniendo la siguiente respuesta:
+```bash
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: text/plain;charset=UTF-8
+Content-Length: 2
+Date: Mon, 28 Nov 2022 14:51:56 GMT
 
-### Reference Documentation
+OK
+```
+
+### Documentación de referencia
 For further reference, please consider the following sections:
 
 * [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
@@ -13,76 +36,9 @@ For further reference, please consider the following sections:
 * [Create an OCI image](https://docs.spring.io/spring-boot/docs/2.7.5/maven-plugin/reference/html/#build-image)
 * [Spring Web](https://docs.spring.io/spring-boot/docs/2.7.5/reference/htmlsingle/#web)
 
-### Guides
+### Guías
 The following guides illustrate how to use some features concretely:
 
 * [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
 * [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
 * [Building REST services with Spring](https://spring.io/guides/tutorials/rest/)
-
----
-
-# kata_exercise
-Repositorio que contiene un ejercicio básico para llevar a cabo la kata.
-
-## Descripción
-
-An in-depth paragraph about your project and overview of use.
-
-## Getting Started
-
-### Dependencies
-
-* dokcer
-* docker compose
-
-* Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-* ex. Windows 10
-
-### Installing
-
-* How/where to download your program
-* Any modifications needed to be made to files/folders
-
-### Executing program
-
-* How to run the program
-* Step-by-step bullets
-```
-code blocks for commands
-```
-
-## Help
-
-Any advise for common problems or issues.
-```
-command to run if program contains helper info
-```
-
-## Authors
-
-Contributors names and contact info
-
-ex. Dominique Pizzie  
-ex. [@DomPizzie](https://twitter.com/dompizzie)
-
-## Version History
-
-* 0.2
-    * Various bug fixes and optimizations
-    * See [commit change]() or See [release history]()
-* 0.1
-    * Initial Release
-
-## License
-
-This project is licensed under the [NAME HERE] License - see the LICENSE.md file for details
-
-## Acknowledgments
-
-Inspiration, code snippets, etc.
-* [awesome-readme](https://github.com/matiassingers/awesome-readme)
-* [PurpleBooth](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
-* [dbader](https://github.com/dbader/readme-template)
-* [zenorocha](https://gist.github.com/zenorocha/4526327)
-* [fvcproductions](https://gist.github.com/fvcproductions/1bfc2d4aecb01a834b46)
