@@ -1,0 +1,13 @@
+version: '3.9'
+services:
+  postgres_pokemon:
+    image: 'postgres:latest'    
+    container_name: blog_local_bd
+    ports:
+      - 25432:5432
+    environment:
+      POSTGRES_USER: 'blog_db_user'
+      POSTGRES_PASSWORD: 'blog_db_password'
+      POSTGRES_DB: postgres
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d

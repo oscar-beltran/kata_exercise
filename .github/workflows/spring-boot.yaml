@@ -1,0 +1,39 @@
+name: spring-boot-workflow
+
+on:
+  push:
+    paths:
+      - .github/workflows/spring-boot.yaml
+      - spring-blog-example/**
+
+defaults:
+  run:
+    working-directory: "./spring-blog-example/"
+
+env:
+  cache-name: "cache-spring-boot-example"
+
+jobs:
+  
+  build-and-test:
+    runs-on: ubuntu-latest
+    name: build and test
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Java 11
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '11'  
+      - name: Dependency cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2
+          key: java-m2-${{ env.cache-name }}-${{ hashFiles('**/pom.xml') }}
+          restore-keys: java-m2-${{ env.cache-name }}    
+      - name: Build
+        run: |
+          mvn clean install -Dmaven.test.skip=true
+      - name: Test
+        run: |
+          mvn test

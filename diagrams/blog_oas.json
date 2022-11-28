@@ -1,0 +1,224 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "BlogAPI",
+        "version": "1.0.0",
+        "description": ""
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8765/"
+        }
+    ],
+    "paths": {
+        "/blog/topic": {
+            "get": {
+                "tags": [
+                    "topic"
+                ],
+                "responses": {
+                    "default": {
+                        "description": "Default response"
+                    },
+                    "200": {
+                        "$ref": "#/components/responses/TopicsResponse"
+                    }
+                },
+                "operationId": "getTopics",
+                "summary": "Obtener todos las etiquetas",
+                "description": "Recurso para obtener todas las etiquetas que están registradas actualmente"
+            }
+        },
+        "/blog/post": {
+            "get": {
+                "tags": [
+                    "post"
+                ],
+                "responses": {
+                    "default": {
+                        "description": "Default response"
+                    },
+                    "200": {
+                        "$ref": "#/components/responses/PostsResponse"
+                    }
+                },
+                "operationId": "getPosts",
+                "summary": "Obtener todos las publicaciones",
+                "description": "Recurso para obtener todas las publicaciones que están registradas actualmente"
+            }
+        },
+        "/blog/user": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/UsersResponse"
+                    }
+                },
+                "operationId": "getUsers",
+                "summary": "Obtener todos los usuarios",
+                "description": "Recurso para obtener todos los usuarios que están registrados actualmente"
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "user": {
+                "title": "Root Type for user",
+                "description": "Estructura con la información de un usuario",
+                "type": "object",
+                "properties": {
+                    "nickname": {
+                        "description": "Nombre de usuario",
+                        "type": "string"
+                    },
+                    "email": {
+                        "description": "Dirección de correo del usuario",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "nickname": "nickname",
+                    "email": "email@mail.com"
+                }
+            },
+            "post": {
+                "title": "Root Type for post",
+                "description": "Estructura con la información de una publicación",
+                "type": "object",
+                "properties": {
+                    "tittle": {
+                        "description": "Título de la publicación",
+                        "type": "string"
+                    },
+                    "content": {
+                        "description": "Contenido de la publicación",
+                        "type": "string"
+                    },
+                    "author": {
+                        "$ref": "#/components/schemas/user",
+                        "description": "Información del autor de la publicación"
+                    }
+                },
+                "example": {
+                    "tittle": "Lorem Ipsum",
+                    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas finibus mattis malesuada. In vel nisl molestie, lobortis velit vestibulum, rhoncus neque. Nulla facilisi. Etiam tellus nulla, viverra eu dapibus vel, pellentesque sit amet urna. Vivamus velit velit, euismod nec lectus ut, tincidunt varius tellus. In velit magna, aliquet et rutrum sit amet, ultricies a elit. Maecenas a augue nisl. Maecenas vel mi nunc. Curabitur lobortis odio quis ligula tristique iaculis. Curabitur nec massa et libero rutrum laoreet. Curabitur volutpat dapibus libero eget eleifend.",
+                    "author": {
+                        "nickname": "admin",
+                        "email": "admin@mail.com"
+                    }
+                }
+            },
+            "topic": {
+                "title": "Root Type for topic",
+                "description": "Estructura con la información de una etiqueta",
+                "type": "object",
+                "properties": {
+                    "key": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "key": "BOOK",
+                    "description": "Libros"
+                }
+            }
+        },
+        "responses": {
+            "UsersResponse": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/user"
+                            }
+                        },
+                        "examples": {
+                            "users_example": {
+                                "value": [
+                                    {
+                                        "nickname": "erick_35",
+                                        "email": "ee35@mail.com"
+                                    },
+                                    {
+                                        "nickname": "sergio_qrr",
+                                        "email": "ser_1@mail.com"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "description": ""
+            },
+            "PostsResponse": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/post"
+                            }
+                        },
+                        "examples": {
+                            "posts_example": {
+                                "value": [
+                                    {
+                                        "tittle": "Lorem",
+                                        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas finibus mattis malesuada. In vel nisl molestie, lobortis velit vestibulum, rhoncus neque. Nulla facilisi. Etiam tellus nulla, viverra eu dapibus vel, pellentesque sit amet urna. Vivamus velit velit, euismod nec lectus ut, tincidunt varius tellus. In velit magna, aliquet et rutrum sit amet, ultricies a elit. Maecenas a augue nisl. Maecenas vel mi nunc. Curabitur lobortis odio quis ligula tristique iaculis. Curabitur nec massa et libero rutrum laoreet. Curabitur volutpat dapibus libero eget eleifend.",
+                                        "author": {
+                                            "nickname": "admin",
+                                            "email": "admin@mail.com"
+                                        }
+                                    },
+                                    {
+                                        "tittle": "Ipsum",
+                                        "content": "Praesent faucibus, neque eget sagittis cursus, est sapien iaculis enim, at malesuada augue lorem tincidunt quam. Ut pellentesque, justo ac ultricies tempor, velit sem congue nulla, et interdum libero ex eu odio. Pellentesque porttitor efficitur dapibus. Maecenas ullamcorper egestas elementum. Integer aliquam metus ut sodales tincidunt. Suspendisse cursus erat id odio mattis, id lacinia velit feugiat. Vivamus at neque ac turpis tempor consectetur. Morbi eget neque varius, efficitur nisl in, cursus diam. Donec vulputate ipsum nec nulla porta, nec semper erat scelerisque. ",
+                                        "author": {
+                                            "nickname": "Sally13",
+                                            "email": "sally@mail.com"
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "description": ""
+            },
+            "TopicsResponse": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/topic"
+                            }
+                        },
+                        "examples": {
+                            "topics_example": {
+                                "value": [
+                                    {
+                                        "key": "BOOK",
+                                        "description": "Libros"
+                                    },
+                                    {
+                                        "key": "REVIEW",
+                                        "description": "Reseñas"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "description": ""
+            }
+        }
+    }
+}
