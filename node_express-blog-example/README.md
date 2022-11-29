@@ -7,8 +7,15 @@ Para la ejecución de esta implementación se requiere tener instalado y configu
 * La base de datos configurada
 * Cualquier herramienta que permita realizar peticiones HTTP, por ejemplo [cURL](https://curl.se/) o [Postman](https://www.postman.com/)
 
+## Instalación Paquetes
+Para instalar los paquetes necesarios para la ejecución del proyecto, debe dirigirse al directorio **node_express-blog-example** y ejecutar el comando:
+```bash
+npm install
+```
+
 ## Ejecución
 Una vez se haya configurado adecuadamente el entorno de desarrollo, dirigirse al directorio **node_express-blog-example** y ejecutar el comando: 
+
 ```bash
 node src
 ```
