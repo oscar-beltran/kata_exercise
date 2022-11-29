@@ -11,43 +11,25 @@
         }
     ],
     "paths": {
-        "/blog/topic": {
+        "/blog/comments": {
             "get": {
                 "tags": [
-                    "topic"
+                    "comment"
                 ],
                 "responses": {
                     "default": {
                         "description": "Default response"
                     },
                     "200": {
-                        "$ref": "#/components/responses/TopicsResponse"
-                    }
-                },
-                "operationId": "getTopics",
-                "summary": "Obtener todos las etiquetas",
-                "description": "Recurso para obtener todas las etiquetas que están registradas actualmente"
-            }
-        },
-        "/blog/post": {
-            "get": {
-                "tags": [
-                    "post"
-                ],
-                "responses": {
-                    "default": {
-                        "description": "Default response"
-                    },
-                    "200": {
-                        "$ref": "#/components/responses/PostsResponse"
+                        "$ref": "#/components/responses/CommentsResponse"
                     }
                 },
                 "operationId": "getPosts",
-                "summary": "Obtener todos las publicaciones",
-                "description": "Recurso para obtener todas las publicaciones que están registradas actualmente"
+                "summary": "Obtener todos los comentarios",
+                "description": "Recurso para obtener todos los comentarios que están registradas actualmente"
             }
         },
-        "/blog/user": {
+        "/blog/users": {
             "get": {
                 "tags": [
                     "user"
@@ -61,6 +43,24 @@
                 "summary": "Obtener todos los usuarios",
                 "description": "Recurso para obtener todos los usuarios que están registrados actualmente"
             }
+        },
+        "/blog/tags": {
+            "get": {
+                "tags": [
+                    "tag"
+                ],
+                "responses": {
+                    "default": {
+                        "description": "Default response"
+                    },
+                    "200": {
+                        "$ref": "#/components/responses/TagsResponse"
+                    }
+                },
+                "operationId": "getTopics",
+                "summary": "Obtener todos las etiquetas",
+                "description": "Recurso para obtener todas las etiquetas que están registradas actualmente"
+            }
         }
     },
     "components": {
@@ -70,6 +70,10 @@
                 "description": "Estructura con la información de un usuario",
                 "type": "object",
                 "properties": {
+                    "user_uuid": {
+                        "description": "UUID del usuario",
+                        "type": "string"
+                    },
                     "nickname": {
                         "description": "Nombre de usuario",
                         "type": "string"
@@ -77,42 +81,26 @@
                     "email": {
                         "description": "Dirección de correo del usuario",
                         "type": "string"
+                    },
+                    "signature": {
+                        "description": "Firma del usuario",
+                        "type": "string"
+                    },
+                    "registered_at": {
+                        "description": "Fecha del registro",
+                        "type": "string"
                     }
                 },
                 "example": {
+                    "user_uuid": "a3b4632b-7655-49e1-a2db-b4a07627756c",
                     "nickname": "nickname",
-                    "email": "email@mail.com"
+                    "email": "email@mail.com",
+                    "signature": "//\\(oo)/\\\\",
+                    "registered_at": "2022-11-28T14:49:00.459Z"
                 }
             },
-            "post": {
-                "title": "Root Type for post",
-                "description": "Estructura con la información de una publicación",
-                "type": "object",
-                "properties": {
-                    "tittle": {
-                        "description": "Título de la publicación",
-                        "type": "string"
-                    },
-                    "content": {
-                        "description": "Contenido de la publicación",
-                        "type": "string"
-                    },
-                    "author": {
-                        "$ref": "#/components/schemas/user",
-                        "description": "Información del autor de la publicación"
-                    }
-                },
-                "example": {
-                    "tittle": "Lorem Ipsum",
-                    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas finibus mattis malesuada. In vel nisl molestie, lobortis velit vestibulum, rhoncus neque. Nulla facilisi. Etiam tellus nulla, viverra eu dapibus vel, pellentesque sit amet urna. Vivamus velit velit, euismod nec lectus ut, tincidunt varius tellus. In velit magna, aliquet et rutrum sit amet, ultricies a elit. Maecenas a augue nisl. Maecenas vel mi nunc. Curabitur lobortis odio quis ligula tristique iaculis. Curabitur nec massa et libero rutrum laoreet. Curabitur volutpat dapibus libero eget eleifend.",
-                    "author": {
-                        "nickname": "admin",
-                        "email": "admin@mail.com"
-                    }
-                }
-            },
-            "topic": {
-                "title": "Root Type for topic",
+            "tag": {
+                "title": "Root Type for tag",
                 "description": "Estructura con la información de una etiqueta",
                 "type": "object",
                 "properties": {
@@ -126,6 +114,45 @@
                 "example": {
                     "key": "BOOK",
                     "description": "Libros"
+                }
+            },
+            "comment": {
+                "title": "Root Type for post",
+                "description": "Estructura con la información de una publicación",
+                "type": "object",
+                "properties": {
+                    "comment_uuid": {
+                        "description": "UUID del comentario",
+                        "type": "string"
+                    },
+                    "post_uuid": {
+                        "description": "UUID de la publicación donde se hizo el comentario",
+                        "type": "string"
+                    },
+                    "content": {
+                        "description": "Contenido de la publicación",
+                        "type": "string"
+                    },
+                    "published": {
+                        "description": "Indica si el comentario se ha publicado o no",
+                        "type": "boolean"
+                    },
+                    "created_at": {
+                        "description": "Fecha en la que se creó el comentario",
+                        "type": "string"
+                    },
+                    "published_at": {
+                        "description": "Fecha en la que se publicó el comentario",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "comment_uuid": "3ec919a3-e14a-44d9-b20e-4a3f4bca060c",
+                    "post_uuid": "25c0a9ab-013b-4093-b1b0-1e2d72fb9d9b",
+                    "content": "Donec eu suscipit elit. Curabitur ut elit eu ligula hendrerit malesuada eget eget risus. Vestibulum ut efficitur nibh. Sed malesuada accumsan libero at aliquet. Donec in velit sit amet nunc pretium egestas",
+                    "published": true,
+                    "created_at": "2022-11-27T10:34:15.309259",
+                    "published_at": "2022-11-28T14:49:00.459268"
                 }
             }
         },
@@ -143,12 +170,18 @@
                             "users_example": {
                                 "value": [
                                     {
+                                        "userUuid": "08139f8c-0a07-4064-bb2c-0ee3a9655736",
                                         "nickname": "erick_35",
-                                        "email": "ee35@mail.com"
+                                        "email": "ee35@mail.com",
+                                        "signature": "signature_1",
+                                        "registeredAt": "2022-11-28T14:49:00.449699"
                                     },
                                     {
+                                        "userUuid": "8731bf6c-ff6c-4cb2-b553-abf86fd02874",
                                         "nickname": "sergio_qrr",
-                                        "email": "ser_1@mail.com"
+                                        "email": "ser_1@mail.com",
+                                        "signature": "signature_2",
+                                        "registeredAt": "2021-01-18T04:19:50.449699"
                                     }
                                 ]
                             }
@@ -157,48 +190,13 @@
                 },
                 "description": ""
             },
-            "PostsResponse": {
+            "TagsResponse": {
                 "content": {
                     "application/json": {
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/components/schemas/post"
-                            }
-                        },
-                        "examples": {
-                            "posts_example": {
-                                "value": [
-                                    {
-                                        "tittle": "Lorem",
-                                        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas finibus mattis malesuada. In vel nisl molestie, lobortis velit vestibulum, rhoncus neque. Nulla facilisi. Etiam tellus nulla, viverra eu dapibus vel, pellentesque sit amet urna. Vivamus velit velit, euismod nec lectus ut, tincidunt varius tellus. In velit magna, aliquet et rutrum sit amet, ultricies a elit. Maecenas a augue nisl. Maecenas vel mi nunc. Curabitur lobortis odio quis ligula tristique iaculis. Curabitur nec massa et libero rutrum laoreet. Curabitur volutpat dapibus libero eget eleifend.",
-                                        "author": {
-                                            "nickname": "admin",
-                                            "email": "admin@mail.com"
-                                        }
-                                    },
-                                    {
-                                        "tittle": "Ipsum",
-                                        "content": "Praesent faucibus, neque eget sagittis cursus, est sapien iaculis enim, at malesuada augue lorem tincidunt quam. Ut pellentesque, justo ac ultricies tempor, velit sem congue nulla, et interdum libero ex eu odio. Pellentesque porttitor efficitur dapibus. Maecenas ullamcorper egestas elementum. Integer aliquam metus ut sodales tincidunt. Suspendisse cursus erat id odio mattis, id lacinia velit feugiat. Vivamus at neque ac turpis tempor consectetur. Morbi eget neque varius, efficitur nisl in, cursus diam. Donec vulputate ipsum nec nulla porta, nec semper erat scelerisque. ",
-                                        "author": {
-                                            "nickname": "Sally13",
-                                            "email": "sally@mail.com"
-                                        }
-                                    }
-                                ]
-                            }
-                        }
-                    }
-                },
-                "description": ""
-            },
-            "TopicsResponse": {
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/components/schemas/topic"
+                                "$ref": "#/components/schemas/tag"
                             }
                         },
                         "examples": {
@@ -211,6 +209,40 @@
                                     {
                                         "key": "REVIEW",
                                         "description": "Reseñas"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "description": ""
+            },
+            "CommentsResponse": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/comment"
+                            }
+                        },
+                        "examples": {
+                            "comments_example": {
+                                "value": [
+                                    {
+                                        "commentUuid": "3ec919a3-e14a-44d9-b20e-4a3f4bca060c",
+                                        "postUuid": "25c0a9ab-013b-4093-b1b0-1e2d72fb9d9b",
+                                        "content": "Sed malesuada accumsan libero at aliquet. Donec in velit sit amet nunc pretium egestas.",
+                                        "published": true,
+                                        "createdAt": "2022-11-28T14:49:00.459268",
+                                        "publishedAt": "2022-11-28T14:49:00.459268"
+                                    },
+                                    {
+                                        "commentUuid": "0ea8d85e-b484-4651-8995-c1f82ebc09fd",
+                                        "postUuid": "25c0a9ab-013b-4093-b1b0-1e2d72fb9d9b",
+                                        "content": "Donec eu suscipit elit. Curabitur ut elit eu ligula hendrerit malesuada eget eget risus. Vestibulum ut efficitur nibh. Sed malesuada accumsan libero at aliquet. Donec in velit sit amet nunc pretium egestas.",
+                                        "published": false,
+                                        "createdAt": "2022-11-28T14:49:00.460977"
                                     }
                                 ]
                             }
