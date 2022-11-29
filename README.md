@@ -32,7 +32,7 @@ Se expondrán de manera predeterminada los siguientes recursos:
 | `[GET]` /blog/comments          | Permite obtener todos los comentarios que hay en base de datos      | 
 | `[GET]` /blog/users          | Permite obtener todas los usuarios que hay en base de datos           | 
 
-![Vista previa OAS](diagrams/blog_oas.png)
+![Vista previa OAS](diagrams/blog_oas_.png)
 
 Para más información sobre las especificaciones de los servicios expuestos revisar el [OpenAPI Specification (OAS)](diagrams/blog_oas.json)
 
