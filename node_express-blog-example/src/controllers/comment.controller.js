@@ -1,5 +1,5 @@
-const db = require('../db/db_queries')
 const utils = require('../utils/util_time')
+const CommentRepository = require('../repository/comment.repository')
 
 const getComments = async (req, res) => {
     //PRINT REQUEST INFO
@@ -9,7 +9,8 @@ const getComments = async (req, res) => {
         return
     }
     try{
-        const comments = await db.getComments()
+        const comment_rep = new CommentRepository(utils)
+        const comments = await comment_rep.getComments()
         res.status(200).json(comments)
     } catch(err) {
         console.log(err)

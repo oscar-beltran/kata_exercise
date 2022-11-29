@@ -1,5 +1,5 @@
-const db = require('../db/db_queries')
 const utils = require('../utils/util_time')
+const UserRepository = require('../repository/user.repository')
 
 const getUsers = async (req, res) => {
     //PRINT REQUEST INFO
@@ -9,7 +9,8 @@ const getUsers = async (req, res) => {
         return
     }
     try{
-        const users = await db.getUsers()
+        const user_rep = new UserRepository()
+        const users = await user_rep.getUsers()
         res.status(200).json(users)
     } catch(err) {
         console.log(err)

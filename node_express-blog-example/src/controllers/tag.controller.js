@@ -1,5 +1,5 @@
-const db = require('../db/db_queries')
 const utils = require('../utils/util_time')
+const TagRepository = require('../repository/tag.repository')
 
 const getTags = async (req, res) => {
     //PRINT REQUEST INFO
@@ -9,7 +9,8 @@ const getTags = async (req, res) => {
         return
     }
     try{
-        const tags = await db.getTags()
+        const tag_rep = new TagRepository(utils)
+        const tags = await tag_rep.getTags()
         res.status(200).json(tags)
     } catch(err) {
         console.log(err)
