@@ -28,9 +28,9 @@ Se expondrán de manera predeterminada los siguientes recursos:
 
 | Nombre del recurso        | Descripción           | 
 | ------------------------- |:-------------:| 
-| `[GET]` /blog/topic         | Permite obtener todas las equiquetas que hay en base de datos      | 
-| `[GET]` /blog/post          | Permite obtener todas las publicaciones que hay en base de datos      | 
-| `[GET]` /blog/user          | Permite obtener todas los usuarios que hay en base de datos           | 
+| `[GET]` /blog/tags         | Permite obtener todas las equiquetas que hay en base de datos      | 
+| `[GET]` /blog/comments          | Permite obtener todos los comentarios que hay en base de datos      | 
+| `[GET]` /blog/users          | Permite obtener todas los usuarios que hay en base de datos           | 
 
 ![Vista previa OAS](diagrams/blog_oas.png)
 
