@@ -29,6 +29,17 @@ const getUsers = () => {
     })
 }
 
+const getUser = (id) => {
+    return new Promise((resolve, reject) => {
+        pool.query('SELECT * FROM blog_user WHERE user_uuid = $1 ', [id], (error, results) => {
+            if (error) {
+                reject(error)
+            }
+            resolve(results.rows.pop())
+        })
+    })
+}
+
 const getTags = () => {
     return new Promise((resolve, reject) => {
         pool.query('SELECT * FROM tag ORDER BY id ASC', (error, results) => {
@@ -44,5 +55,6 @@ const getTags = () => {
 module.exports = {
     getComments,
     getUsers,
+    getUser,
     getTags,
 }

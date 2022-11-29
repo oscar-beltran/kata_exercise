@@ -42,6 +42,7 @@ The following guides illustrate how to use some features concretely:
 
 * [Express + Node JS](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/Introduction)
 * [NodeJS + Express + Postgresql](https://blog.logrocket.com/crud-rest-api-node-js-express-postgresql/)
+* [PERN](https://www.youtube.com/watch?v=ldYcgPKEZC8)
 
 
 

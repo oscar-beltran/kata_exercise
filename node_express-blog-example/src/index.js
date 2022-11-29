@@ -27,6 +27,7 @@ app.get('/blog/health', (request, response) => {
 /* DECLARACION FUNCIONES BASE */
 app.get('/blog/comments', con_comment.getComments)
 app.get('/blog/users', con_user.getUsers)
+app.get('/blog/users/:id', con_user.getUser)
 app.get('/blog/tags', con_tag.getTags)
 
 app.listen(port, () => {
