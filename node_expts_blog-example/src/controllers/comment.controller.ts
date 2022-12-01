@@ -29,22 +29,4 @@ export class CommentsController {
         }
     }
 
-    public async getCommentById(req: Request, res: Response, next: NextFunction): Promise<void> {
-        try {
-            const id: string = req.params.id;
-            const comment: Comment = await this.repository.getCommentById(id);
-            const _comment = new CommentModel(
-                comment.comment_uuid,
-                comment.post_uuid,
-                comment.content,
-                comment.published,
-                comment.created_at
-            )
-            res.status(200).json(_comment);
-        } catch (error) {
-            next(error);
-        }
-    }
-
-
 }

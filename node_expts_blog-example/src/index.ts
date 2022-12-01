@@ -37,13 +37,11 @@ app.use((req, res, next) => {
 
 app.use(applicationRouter);
 
-// app.listen(8765, () => {
-//     console.log('Server started on port 8765')
-// })
-
 const httpServer = http.createServer(app);
 httpServer.listen(config.server.port, () => {
     console.info('--------------------------------------------------------------------------------');
     logging.info(NAMESPACE, `Server is running ${config.server.hostname}:${config.server.port}`);
     console.info('--------------------------------------------------------------------------------');
 });
+
+export { app };

@@ -18,7 +18,8 @@ router.get('/:id', async (req: Request, res: Response, next: NextFunction) => {
         res.status(400).send('Bad Request, missing rqUuid header')
         return
     }
-    await controller.getUserById(req, res, next);
+    /* BUSCAR USUARIO POR ID */
+    res.status(400).send('Bad Request, missing functionality')
 });
 
 export const usersRouter: Router = router;

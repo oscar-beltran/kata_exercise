@@ -30,23 +30,4 @@ export class UsersController {
         }
     }
 
-    public async getUserById(req: Request, res: Response, next: NextFunction): Promise<void> {
-        try {
-            const id: string = req.params.id;
-            const user: User = await this.repository.getUserById(id);
-            const _user = new UserModel(
-                user.user_uuid,
-                user.nickname,
-                user.email,
-                user.password_md5_hash,
-                user.signature,
-                user.registered_at,
-            )
-            res.status(200).json(_user);
-        } catch (error) {
-            next(error);
-        }
-    }
-
-
 }

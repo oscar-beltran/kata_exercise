@@ -27,20 +27,4 @@ export class TagsController {
         }
     }
 
-    public async getTagById(req: Request, res: Response, next: NextFunction): Promise<void> {
-        try {
-            const id: string = req.params.id;
-            const tag: Tag = await this.repository.getTagById(id);
-            const _tag = new TagModel(
-                    parseInt(tag.id.toString()),
-                    tag.key,
-                    tag.description,
-                )
-            res.status(200).json(_tag);
-        } catch (error) {
-            next(error);
-        }
-    }
-
-
 }
