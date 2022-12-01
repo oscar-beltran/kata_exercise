@@ -13,20 +13,34 @@ Para instalar los paquetes necesarios para la ejecución del proyecto, debe diri
 npm install
 ```
 
+Para construir el proyecto, debe ejecutar el comando:
+```bash
+npm run build
+```
+
 ## Ejecución
 Una vez se haya configurado adecuadamente el entorno de desarrollo, dirigirse al directorio **node_expts_blog-example** y ejecutar el comando: 
+
+para correr el proyecto:
 
 ```bash
 npm run start
 ```
 
-Para ejecutar el proyecto en modo desarrollo, dirigirse al directorio **node_expts_blog-example** y ejecutar el comando: 
+Para ejecutar el proyecto en modo desarrollo:
 
 ```bash
 npm run start:dev
 ```
 
+Para ejecutar las pruebas:
+    
+```bash
+npm run test
+```
+
 Para realizar algún consumo a los servicios expuestos, por ejemplo:
+
 ```bash
 curl http://127.0.0.1:8765/blog/health -i
 ```
