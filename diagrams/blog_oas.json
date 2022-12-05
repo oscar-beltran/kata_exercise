@@ -27,7 +27,20 @@
                 "operationId": "getPosts",
                 "summary": "Obtener todos los comentarios",
                 "description": "Recurso para obtener todos los comentarios que están registradas actualmente"
-            }
+            },
+            "parameters": [
+                {
+                    "name": "rqUuid",
+                    "description": "Identificador único (Ej: 208c9490)",
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 36
+                    },
+                    "in": "header",
+                    "required": true
+                }
+            ]
         },
         "/blog/users": {
             "get": {
@@ -42,7 +55,20 @@
                 "operationId": "getUsers",
                 "summary": "Obtener todos los usuarios",
                 "description": "Recurso para obtener todos los usuarios que están registrados actualmente"
-            }
+            },
+            "parameters": [
+                {
+                    "name": "rqUuid",
+                    "description": "Identificador único (Ej: 208c9490)",
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 36
+                    },
+                    "in": "header",
+                    "required": true
+                }
+            ]
         },
         "/blog/tags": {
             "get": {
@@ -60,7 +86,20 @@
                 "operationId": "getTopics",
                 "summary": "Obtener todos las etiquetas",
                 "description": "Recurso para obtener todas las etiquetas que están registradas actualmente"
-            }
+            },
+            "parameters": [
+                {
+                    "name": "rqUuid",
+                    "description": "Identificador único (Ej: 208c9490)",
+                    "schema": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 36
+                    },
+                    "in": "header",
+                    "required": true
+                }
+            ]
         }
     },
     "components": {
