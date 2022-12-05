@@ -11,13 +11,13 @@ export class UsersRepository implements IRepository<User>  {
     }
 
     public async getUsers(): Promise<User[]> {
-        return new Promise((resolve, reject) => {
-            pool.query('SELECT * FROM blog_user ORDER BY user_uuid ASC', (error, results) => {
-                if (error) {
-                    reject(error)
-                }
-                resolve(results.rows)
-            })
+        return new Promise(async (resolve, reject) => {
+            try {
+                const results : any =  await pool.query('SELECT * FROM blog_user ORDER BY user_uuid ASC');
+                resolve(results.rows);
+            } catch (error) {
+                reject(error);
+            }
         })
     }
 

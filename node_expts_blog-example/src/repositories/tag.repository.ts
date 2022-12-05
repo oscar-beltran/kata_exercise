@@ -10,13 +10,13 @@ export class TagsRepository implements IRepository<Tag>  {
         return repository.find();
     }
     public async getTags(): Promise<Tag[]> {
-        return new Promise((resolve, reject) => {
-            pool.query('SELECT * FROM tag ORDER BY id ASC', (error, results) => {
-                if (error) {
-                    reject(error)
-                }
-                resolve(results.rows)
-            })
+        return new Promise(async (resolve, reject) => {
+            try {
+                const results : any =  await pool.query('SELECT * FROM tag ORDER BY id ASC');
+                resolve(results.rows);
+            } catch (error) {
+                reject(error);
+            }
         })
     }
 
