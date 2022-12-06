@@ -10,7 +10,7 @@ def test_comments_resource(app_mock,
     mock_get_sqlalchemy,
     mock_comment_model    
 ):
-    mock_get_sqlalchemy.all.return_value = [mock_comment_model]
+    mock_get_sqlalchemy.all.return_value = [mock_comment_model, mock_comment_model]
     response = app_mock.test_client().get("/blog/comments")
     response_load = json.loads(response.data.decode('utf-8'))
     assert response.status_code == 200
