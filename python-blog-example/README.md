@@ -1,26 +1,37 @@
 # spring-blog-example
-Implementación usando spring boot del administrador del blog.
+Implementación usando Flask (python) del administrador del blog.
 
 ## Dependencias
 Para la ejecución de esta implementación se requiere tener instalado y configurado:
-* Java 11
-* Apache Maven (versión sugerida 3.8.6)
+* PIP3
+* Python 3
 * La base de datos configurada
 * Cualquier herramienta que permita realizar peticiones HTTP, por ejemplo [cURL](https://curl.se/) o [Postman](https://www.postman.com/)
 
 ## Ejecución
-Una vez se haya configurado adecuadamente el entorno de desarrollo, dirigirse al directorio **spring-blog-example** y ejecutar los siguientes comandos: 
+Una vez se haya configurado adecuadamente el entorno de desarrollo, dirigirse al directorio **python-blog-example** y ejecutar los comandos: 
+
+### Instalar dependencias
+```bash
+python3 -m venv venv
+source ./venv/bin/activate
+pip install -r requirements.txt
+```
+
 ### Ejecución de pruebas
 ```bash
-mvn test
+pytest -s
 ```
+
 ### Iniciar el componente
 ```bash
-mvn spring-boot:run
+python3 -m venv venv
+source ./venv/bin/activate
+flask run -p 8765
 ```
 Y realizar algún consumo a los servicios expuestos, por ejemplo:
 ```bash
-curl http://127.0.0.1:8765/blog/health -i
+curl http://127.0.0.1:5000/blog/health -i
 ```
 Obteniendo la siguiente respuesta:
 ```bash
