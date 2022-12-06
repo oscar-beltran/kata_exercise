@@ -14,7 +14,7 @@ def test_comments_resource(app_mock,
     response = app_mock.test_client().get("/blog/comments")
     response_load = json.loads(response.data.decode('utf-8'))
     assert response.status_code == 200
-    assert len(response_load) == 1
+    assert len(response_load) == 2
     assert response_load[0]['comment_uuid'] == '3e40d79f-9ae1-47b9-987c-3c7ecb0fd915'
 
 def test_users_resource(app_mock, 
