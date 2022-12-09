@@ -19,43 +19,36 @@ pip install -r requirements.txt
 ```
 
 ### Ejecución de pruebas
+Posterior a la instalación de las dependencias
 ```bash
 pytest -s
 ```
 
 ### Iniciar el componente
+Posterior a la instalación de las dependencias
 ```bash
-python3 -m venv venv
-source ./venv/bin/activate
 export FLASK_APP=server.py
 flask run -p 8765
 ```
 Y realizar algún consumo a los servicios expuestos, por ejemplo:
 ```bash
-curl http://127.0.0.1:5000/blog/health -i
+curl http://127.0.0.1:8765/blog/health -i
 ```
 Obteniendo la siguiente respuesta:
 ```bash
 HTTP/1.1 200 OK
-Connection: keep-alive
-Content-Type: text/plain;charset=UTF-8
+Server: Werkzeug/2.2.2 Python/3.10.8
+Date: Fri, 09 Dec 2022 20:50:38 GMT
+Content-Type: text/html; charset=utf-8
 Content-Length: 2
-Date: Mon, 28 Nov 2022 14:51:56 GMT
+Connection: close
 
-OK
+OK 
 ```
 
 ### Documentación de referencia
 For further reference, please consider the following sections:
 
-* [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
-* [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/2.7.5/maven-plugin/reference/html/)
-* [Create an OCI image](https://docs.spring.io/spring-boot/docs/2.7.5/maven-plugin/reference/html/#build-image)
-* [Spring Web](https://docs.spring.io/spring-boot/docs/2.7.5/reference/htmlsingle/#web)
-
-### Guías
-The following guides illustrate how to use some features concretely:
-
-* [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
-* [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
-* [Building REST services with Spring](https://spring.io/guides/tutorials/rest/)
+* [Modular Applications with Blueprints](https://flask.palletsprojects.com/en/2.2.x/blueprints/)
+* [Flask-SQLAlchemy](https://flask-sqlalchemy.palletsprojects.com/en/3.0.x/)
+* [pytest-mock](https://github.com/pytest-dev/pytest-mock/)
