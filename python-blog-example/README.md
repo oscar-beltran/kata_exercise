@@ -27,6 +27,7 @@ pytest -s
 ```bash
 python3 -m venv venv
 source ./venv/bin/activate
+export FLASK_APP=server.py
 flask run -p 8765
 ```
 Y realizar algún consumo a los servicios expuestos, por ejemplo:

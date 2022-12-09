@@ -1,7 +1,7 @@
 import json
 
 def test_health_resource(app_mock):
-    response = app_mock.test_client().get("/blog/health")
+    response = app_mock.test_client().get('/blog/health')
     assert response.status_code == 200
     assert response.data.decode('utf-8') == 'OK'
 
@@ -11,7 +11,7 @@ def test_comments_resource(app_mock,
     mock_comment_model    
 ):
     mock_get_sqlalchemy.all.return_value = [mock_comment_model, mock_comment_model]
-    response = app_mock.test_client().get("/blog/comments")
+    response = app_mock.test_client().get('/blog/comments', headers = {'rqUuid': '8d5259f8-2b9e-467c-b8e6-1a4508c9c377'})
     response_load = json.loads(response.data.decode('utf-8'))
     assert response.status_code == 200
     assert len(response_load) == 2
@@ -22,7 +22,7 @@ def test_users_resource(app_mock,
     mock_user_model    
 ):
     mock_get_sqlalchemy.all.return_value = [mock_user_model]
-    response = app_mock.test_client().get("/blog/users")
+    response = app_mock.test_client().get('/blog/users', headers = {'rqUuid': '8d5259f8-2b9e-467c-b8e6-1a4508c9c377'})
     response_load = json.loads(response.data.decode('utf-8'))
     assert response.status_code == 200
     assert len(response_load) == 1
@@ -33,7 +33,7 @@ def test_tags_resource(app_mock,
     mock_tag_model    
 ):
     mock_get_sqlalchemy.all.return_value = [mock_tag_model]
-    response = app_mock.test_client().get("/blog/tags")
+    response = app_mock.test_client().get('/blog/tags', headers = {'rqUuid': '8d5259f8-2b9e-467c-b8e6-1a4508c9c377'})
     response_load = json.loads(response.data.decode('utf-8'))
     assert response.status_code == 200
     assert len(response_load) == 1
