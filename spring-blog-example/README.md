@@ -9,7 +9,12 @@ Para la ejecución de esta implementación se requiere tener instalado y configu
 * Cualquier herramienta que permita realizar peticiones HTTP, por ejemplo [cURL](https://curl.se/) o [Postman](https://www.postman.com/)
 
 ## Ejecución
-Una vez se haya configurado adecuadamente el entorno de desarrollo, dirigirse al directorio **spring-blog-example** y ejecutar el comando: 
+Una vez se haya configurado adecuadamente el entorno de desarrollo, dirigirse al directorio **spring-blog-example** y ejecutar los siguientes comandos: 
+### Ejecución de pruebas
+```bash
+mvn test
+```
+### Iniciar el componente
 ```bash
 mvn spring-boot:run
 ```

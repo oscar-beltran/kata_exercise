@@ -1,0 +1,35 @@
+name: python-flask-workflow
+
+on:
+  push:
+    paths:
+      - .github/workflows/python-flask.yaml
+      - python-blog-example/**
+
+defaults:
+  run:
+    working-directory: "./python-blog-example/"
+
+env:
+  cache-name: "cache-python-blog-example"
+
+jobs:
+  
+  dependencies-and-test:
+    runs-on: ubuntu-latest
+    name: install dependecies and test
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - name: Install dependecies
+        run: |
+          python3 -m venv venv
+          source venv/bin/activate
+          pip install --upgrade --upgrade-strategy eager -r requirements.txt
+      - name: Test
+        run: |
+          source venv/bin/activate
+          pytest -s
